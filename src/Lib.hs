@@ -16,6 +16,7 @@ import Lucid
 import Homepage
 
 type API = Get '[HTML] Home
+    :<|> "static" :> Raw
 
 startApp :: IO ()
 startApp = run 8080 app
@@ -28,3 +29,4 @@ api = Proxy
 
 server :: Server API
 server = return Home
+    :<|> serveDirectory "static"
